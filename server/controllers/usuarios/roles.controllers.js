@@ -62,13 +62,13 @@ export const updateRol = async (req, res) => {
     const { Nombre, Descripcion } = req.body;
 
     try {
-        // Comprobar si el rol existe
+       
         const [existingRol] = await pool.query('SELECT * FROM Rol WHERE ID = ?', [id]);
         if (existingRol.length === 0) {
             return res.status(404).json({ mensaje: 'El rol no existe' });
         }
 
-        // Construir la actualización dinámicamente
+     
         let updateFields = [];
         let updateValues = [];
 
@@ -85,8 +85,8 @@ export const updateRol = async (req, res) => {
             return res.status(400).json({ mensaje: 'No se proporcionaron campos para actualizar' });
         }
 
-        // Ejecutar la consulta de actualización
-        updateValues.push(id); // Agregar el ID al final para la condición WHERE
+  
+        updateValues.push(id);
         const updateQuery = `UPDATE Rol SET ${updateFields.join(', ')} WHERE ID = ?`;
         await pool.query(updateQuery, updateValues);
 
