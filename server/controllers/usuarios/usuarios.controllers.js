@@ -64,9 +64,9 @@ export const login = async (req, res) => {
         if (!passwordMatch) {
             return res.status(400).json({ mensaje: 'Correo o Contracena invalida' });
         }
-
-     
-        res.status(200).json({ mensaje: 'Inicio de sesión exitoso' });
+        
+            
+        res.status(200).json(user);
 
     } catch (error) {
         console.error(error);
